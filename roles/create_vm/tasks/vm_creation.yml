@@ -7,6 +7,7 @@
        url: "{{ base_image_url }}"
        dest: "/tmp/{{ base_image_name }}"
        checksum: "sha256:{{ base_image_sha }}"
+
    - name: Copy base image to libvirt directory
      copy:
        dest: "{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2"
@@ -15,14 +16,16 @@
        remote_src: yes 
        mode: 0660
      register: copy_results
+
    - name: Configure the image
      command: |
        virt-customize -a {{ libvirt_pool_dir }}/{{ vm_name }}.qcow2 \
-       --hostname {{ vm_name }} \
+       --hostname {{ vm_name }}.iisl.lab \
        --root-password password:{{ vm_root_pass }} \
        --ssh-inject 'root:file:{{ ssh_key }}' \
        --uninstall cloud-init --selinux-relabel
      when: copy_results is changed
+     
    - name: Define vm
      community.libvirt.virt:
        command: define

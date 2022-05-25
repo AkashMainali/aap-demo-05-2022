@@ -1,6 +1,6 @@
 <domain type='kvm' id='10'>
-  <name>RHEL8_Template</name>
-  <uuid>d11435ff-7511-4405-9be6-f596040c27d4</uuid>
+  <name>{{ vm_name }}</name>
+  <uuid>{{ my_unique_id }}</uuid>
   <metadata xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0" xmlns:cockpit_machines="https://github.com/cockpit-project/cockpit-machines">
     <libosinfo:libosinfo>
       <libosinfo:os id="http://redhat.com/rhel/8.5"/>
@@ -12,9 +12,8 @@
       <cockpit_machines:os_variant>rhel8.5</cockpit_machines:os_variant>
     </cockpit_machines:data>
   </metadata>
-  <memory unit='KiB'>2097152</memory>
-  <currentMemory unit='KiB'>2097152</currentMemory>
-  <vcpu placement='static'>1</vcpu>
+  <memory unit='MiB'>{{ vm_ram_mb }}</memory>
+  <vcpu placement='static'>{{ vm_vcups }}</vcpu>
   <resource>
     <partition>/machine</partition>
   </resource>
