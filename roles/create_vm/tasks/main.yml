@@ -1,0 +1,10 @@
+---
+# tasks file for create_vm
+- name: Call the playbook for initial setup
+  include_task: initial_setup.yml
+
+- name: Call the playbook for Creating and running the VM
+  include_task: vm_creation.yml
+
+- name: Call the playbook to cleanup
+  include_task: cleanup.yml
