@@ -1,0 +1,5 @@
+---
+collections:
+  - src: https://github.com/ansible-collections/community.libvirt.git
+    type: git
+    version: main
