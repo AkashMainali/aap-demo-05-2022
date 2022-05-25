@@ -2,6 +2,9 @@
 ---
 # this file assumes Automation Hub is the default source
 collections:
+
+- name: community.libvirt.virt
+  version: 1.1.0
 - name: infoblox.nios_modules
   version: 1.0.0
 # dig command pulled from here
