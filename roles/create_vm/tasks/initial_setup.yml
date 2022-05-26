@@ -1,10 +1,11 @@
 ---
 - name: Ensure requirements in place
-  package:
-    name:
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
       - guestfs-tools
       - python3-libvirt
-    state: present
 
 - name: Get VMs list
   community.libvirt.virt:
