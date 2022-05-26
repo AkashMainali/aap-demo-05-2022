@@ -6,12 +6,7 @@
 #   with_items:
 #       - guestfs-tools
 #       - python3-libvirt
-- name: Check the python version to set it up as ansible_python_intpretor
-  shell: /usr/bin/python3 --version
-  register: python_version
 
-- set_fact:
-  ansible_python_intepretor: python_version
 - name: Get VMs list
   community.libvirt.virt:
     command: list_vms
