@@ -1,0 +1,37 @@
+---
+- name: Copy Configure-WinRMRemoting.ps1 file to VM
+  community.vmware.vmware_guest_file_operation:
+    hostname: "{{ vcenter_server }}"
+    username: "{{ vcenter_user }}"
+    password: "{{ vcenter_pass }}"
+    datacenter: "{{ datacenter_name }}"
+    cluster: "{{datacenter_cluster}}"
+    folder: "{{vcenter_folder}}"
+    validate_certs: no
+    vm_id: "{{item.value.server_name}}"
+    vm_username: "{{ local_username }}"
+    vm_password: "{{ local_password }}"
+    copy:
+       src: "{{ role_path }}/files/Configure-WinRMRemoting.ps1" 
+       dest: "c:\\scripts\\Configure-WinRMRemoting.ps1"
+       overwrite: true
+  delegate_to: localhost
+  loop: "{{ vms.dict|dict2items }}" 
+
+- pause:
+   seconds: 30
+
+- name:  Wait for VMware tools to become Available 
+  community.vmware.vmware_guest_tools_wait:
+    hostname: "{{ vcenter_server }}"
+    username: "{{ vcenter_user }}"
+    password: "{{ vcenter_pass }}"
+    validate_certs: no
+    folder: "/{{ datacenter_name }}/vm"
+    name: "{{ item.value.server_name }}"
+  delegate_to: localhost
+  register: facts
+  loop: "{{ vms.dict|dict2items }}" 
+
+- pause:
+   seconds: 20

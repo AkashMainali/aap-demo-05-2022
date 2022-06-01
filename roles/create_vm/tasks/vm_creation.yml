@@ -1,43 +1,51 @@
 ---
-- name: Create VM if not exists
-  block:
+- name: Provision Windows server on VSphere
+  community.vmware.vmware_guest:
+   hostname: "{{ vcenter_server }}"
+   username: "{{ vcenter_user }}"
+   password: "{{ vcenter_pass }}"
+   folder: "{{ vcenter_folder }}"
+   template: "{{ wintemplate }}"
+   validate_certs: no
+   name: "{{ item.value.server_name }}"
+   state: poweredon
+   cluster: "{{ datacenter_cluster }}"
+   datastore: "{{ vcenter_datastore }}"
+   datacenter: "{{ datacenter_name }}"
+   cdrom:
+    - controller_number: 0
+      controller_type: ide 
+      state: present
+      unit_number: 0
+      type: iso
+      iso_path: "[ISOS_and_Templates] SQL_Ent_2019.ISO"
+   customization:
+     dns_suffix:
+       - "{{domainname}}"
+       - "{{spcomdomain}}"
+       - "{{paychexdomain}}"
+     dns_servers:
+       - '{{dns1}}'
+       - '{{dns2}}'
+     password: "{{local_password}}"
+     domain: "{{domainname}}"
+     domainadmin: "{{domainuser}}"
+     domainadminpassword: "{{domainpass}}"
+     joindomain: "{{domainname}}"
+   wait_for_ip_address: yes
+   wait_for_customization: yes
+  register: win_vm
+  loop: "{{ vms.dict|dict2items }}" 
+  when: 'item.value.tnic|int == 2'
+  poll: 0
+  async: 1000
 
-   - name: Download base image
-     get_url:
-       url: "{{ base_image_url }}"
-       dest: "/tmp/{{ base_image_name }}"
-       checksum: "sha256:{{ base_image_sha }}"
-
-   - name: Copy base image to libvirt directory
-     copy:
-       dest: "{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2"
-       src: "/tmp/{{ base_image_name }}"
-       force: no
-       remote_src: yes 
-       mode: 0660
-     register: copy_results
-
-   - name: Configure the image
-     command: |
-       virt-customize -a {{ libvirt_pool_dir }}/{{ vm_name }}.qcow2 \
-       --hostname {{ vm_name }}.iisl.lab \
-       --root-password password:{{ vm_root_pass }} \
-       --ssh-inject 'root:file:{{ ssh_key }}' \
-       --uninstall cloud-init --selinux-relabel
-     when: copy_results is changed
-     
-   - name: Define vm
-     community.libvirt.virt:
-       command: define
-       xml: "{{ lookup('template', 'vm-template.xml.j2') }}"
-
-  when: "vm_name not in existing_vms.list_vms"
-
-- name: Ensure VM is started
-  community.libvirt.virt:
-    name: "{{ vm_name }}"
-    state: running
-  register: vm_start_results
-  until: "vm_start_results is success"
-  retries: 15
-  delay: 2
+- name: Wait for Above running task to finish
+  async_status:
+   jid: "{{ item.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 100
+  delay: 10
+  loop: "{{win_vm.results}}"
+  when: item.ansible_job_id  is defined
