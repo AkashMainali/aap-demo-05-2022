@@ -1,0 +1,12 @@
+---
+# tasks file for cerate_AD_user
+- name: "Create a user"
+  win_domain_user:
+        firstname: "{{ ad_firstname }}"
+        surname: "{{ ad_surname }}"
+        name: "{{ ad_name }}"
+        upn: "{{ ad_upn }}"
+        state: present
+        fullname: "My {{ ad_firstname }} {{ ad_surname }} User"
+        password: "{{ ad_password }}"
+        path: "{{ ad_path }}"
