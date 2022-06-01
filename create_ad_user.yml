@@ -1,11 +1,7 @@
 - name: "Work with Active Directory"
-  hosts: windows
+  hosts: ad_server
   tasks:
    - name: Include role to create AD user in windows environment
      include_role:
         name: craete_AD_user
 
-
-   - name: Include role to create directories for AD user in windows environment
-     include_role:
-        name: create_directory_for_ad_user
