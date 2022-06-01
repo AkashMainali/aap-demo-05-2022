@@ -1,0 +1,8 @@
+---
+- name: " Work with Active Directory "
+  hosts: ansible-windows
+  tasks:
+
+   - name: Include role to install windows service
+     include_role:
+        name: install_windows_service

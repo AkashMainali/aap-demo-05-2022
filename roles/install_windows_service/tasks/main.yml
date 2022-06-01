@@ -1,0 +1,19 @@
+---
+# tasks file for install_windows_service
+- name: Install windows Features
+  ansible.windows.win_feature:
+    name:
+     - "{{ item }}"
+    include_management_tools: yes
+  with_items:
+    - "{{ feature_list }}"
+  state: present
+
+- name: Restart the server
+  win_reboot:
+
+# One way to ensure the system is reliable, is to set WinRM to a delayed startup
+- name: Ensure WinRM starts when the system has settled and is ready to work reliably
+  win_service:
+    name: WinRM
+    start_mode: delayed
