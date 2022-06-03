@@ -1,5 +1,5 @@
 ---
-- name: " Work with Active Directory "
+- name: Create directory for AD user
   hosts: all
   tasks:
 
