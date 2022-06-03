@@ -1,8 +1,8 @@
 ---
-- name: " Work with Active Directory "
+- name: "Work with Active Directory"
   hosts: all
   tasks:
 
    - name: Include role to install windows service
      include_role:
-        name: install_windows_service
+        name: install_choco_windows

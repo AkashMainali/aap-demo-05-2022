@@ -1,6 +1,6 @@
 ---
 - name: " Work with Active Directory "
-  hosts: ansible-windows
+  hosts: all
   tasks:
 
    - name: Include role to create directories for AD user in windows environment

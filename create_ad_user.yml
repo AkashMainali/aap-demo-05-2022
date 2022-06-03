@@ -1,5 +1,5 @@
 - name: "Work with Active Directory"
-  hosts: ad_server
+  hosts: all
   tasks:
    - name: Include role to create AD user in windows environment
      include_role:
