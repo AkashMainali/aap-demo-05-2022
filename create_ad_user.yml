@@ -3,5 +3,4 @@
   tasks:
    - name: Include role to create AD user in windows environment
      include_role:
-        name: craete_AD_user
-
+        name: create_AD_user
