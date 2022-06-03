@@ -1,6 +1,8 @@
-- name: "Work with Active Directory"
+- name: Work with Active Directory
   hosts: all
   tasks:
-   - name: Include role to create AD user in windows environment
-     include_role:
-        name: cerate_ad_user
+  - name: ping the windows machine
+    win_ping:
+  #  - name: Include role to create AD user in windows environment
+  #    include_role:
+  #       name: cerate_ad_user
