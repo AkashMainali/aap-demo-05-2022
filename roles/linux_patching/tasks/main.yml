@@ -6,7 +6,6 @@
     state: latest
     exclude: kernel*, postfix*
     skip_broken: yes
-    nobest: yes
   register: upd_result
 
 - name: Auto-remove
