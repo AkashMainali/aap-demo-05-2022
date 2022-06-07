@@ -5,26 +5,25 @@
     hostname: "aap1.iisl.lab"
     username: "{{vm_username}}"
     password: "{{vm_password}}"
-    guest_id: "{{vm_guest_id}}"
     folder: "{{vm_folder}}"
     template: "{{vm_template}}"
     validate_certs: no
     name: "{{vm_name}}"
-    state: "{{vm_state}}"
+    state: poweredon
     cluster: "{{vm_cluster}}"
-    datastore: "{{vm_datastore}}"
+    datastore: "Demo-Datastore01"
     datacenter: "{{vm_datacenter}}"
     networks:
-     - name: "{{vm_network}}"
+     - name: "RHEL-Automation - vLAN 102"
        type: dynamic
-       domain: "{{vm_domain_name}}"
+       domain: "{{vm_name}}.iisl.lab"
        dns_servers:
          - 192.168.2.201
     customization:
-       hostname: "{{vm_name}}"
+       hostname: "{{vm_name}}.iisl.lab"
        dns_servers:
          - 192.168.2.201
-       domain: "{{vm_domain_name}}"
+       domain: "dns.iisl.lab"
        state: started
     wait_for_ip_address: yes
     wait_for_customization: yes

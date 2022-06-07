@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Gather vmware host facts
+      community.vmware.vmware_host_facts:
+        hostname: "cmrv-vc01.crucible.iisl.com"
+        username: "{{ vm_username }}"
+        password: "{{ vm_password }}"
+      register: host_facts
+      delegate_to: localhost
