@@ -1,0 +1,19 @@
+---
+# tasks file for roles/linux_patching
+- name: Update all the packages except for kernel and postfix
+  yum:
+    name: '*'
+    state: latest
+    exclude: kernel*, postfix*
+    skip_broken: yes
+    nobest: yes
+  register: upd_result
+
+- name: Auto-remove
+  yum:
+    autoremove: yes
+  register: autoremove_result
+
+- name: Print activity
+  debug:
+    msg: "Updated: {{ upd_result }}, Autoremoved: {{ autoremove_result }}"
