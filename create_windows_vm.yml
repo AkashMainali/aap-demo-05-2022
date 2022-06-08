@@ -13,6 +13,6 @@
     ssh_pub_key: "/home/rgerardi/.ssh/id_rsa.pub"
 
   tasks:
-    - name: KVM Provision role
+    - name: VM Provision role
       include_role:
         name: create_vm

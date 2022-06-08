@@ -1,8 +1,8 @@
 ---
 - hosts: all
   gather_facts: no
-  roles:
-    - role: linux_patching
-  # tasks:
-  #   - name: test
-  #     ping:
+  become: true
+  tasks:
+    - name: Patch the linux machine
+      include_role:
+        name: linux_patching
