@@ -2,7 +2,7 @@
   hosts: all
   tasks:
   - name: ping the windows machine
-    win_ping:
+    ansible.windows.win_ping:
   #  - name: Include role to create AD user in windows environment
   #    include_role:
   #       name: cerate_ad_user
