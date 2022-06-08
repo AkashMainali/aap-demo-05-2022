@@ -2,5 +2,8 @@
 - hosts: all
   gather_facts: yes
   become: yes
-  roles:
-    - role: linux_patching
+  # roles:
+  #   - role: linux_patching
+  tasks:
+    - name: test
+      ping:
