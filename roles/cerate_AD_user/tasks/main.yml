@@ -1,7 +1,7 @@
 ---
 # tasks file for cerate_AD_user
 - name: "Create a user"
-  win_domain_user:
+  ansible.windows.win_domain_user:
         firstname: "{{ ad_firstname }}"
         surname: "{{ ad_surname }}"
         name: "{{ ad_name }}"

@@ -2,10 +2,10 @@
 # tasks file for create_linux_vm
 - name: Provision RHEL machine
   vmware_guest:
-    hostname: "aap1.iisl.lab"
+    hostname: "cmrv-vc01"
     username: "{{vm_username}}"
     password: "{{vm_password}}"
-    folder: "{{vm_folder}}"
+    folder: "RHEL-Automation"
     template: "{{vm_template}}"
     validate_certs: no
     name: "{{vm_name}}"
