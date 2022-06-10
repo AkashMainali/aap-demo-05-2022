@@ -1,13 +1,6 @@
 ---
 - hosts: localhost
   gather_facts: yes
-  plugin: community.vmware.vmware_host_inventory
-    strict: False
-    hostname: 10.65.223.31
-    username: administrator@vsphere.local
-    password: Esxi@123$%
-    validate_certs: False
-    with_tags: True
   tasks:
     - name: Gather vmware host facts
       community.vmware.vmware_host_facts:

@@ -2,17 +2,17 @@
 # tasks file for create_linux_vm
 - name: Provision RHEL machine
   vmware_guest:
-    hostname: "cmrv-vc01"
-    username: "{{vm_username}}"
-    password: "{{vm_password}}"
+    # hostname: "cmrv-vc01"
+    # username: "{{vm_username}}"
+    # password: "{{vm_password}}"
     folder: "RHEL-Automation"
-    template: "{{vm_template}}"
+    template: "RHEL-Automation/rhel7"
     validate_certs: no
     name: "{{vm_name}}"
     state: poweredon
-    cluster: "{{vm_cluster}}"
+    cluster: "RHEL-Automation"
     datastore: "Demo-Datastore01"
-    datacenter: "{{vm_datacenter}}"
+    datacenter: "RHEL-Automation"
     networks:
      - name: "RHEL-Automation - vLAN 102"
        type: dynamic
