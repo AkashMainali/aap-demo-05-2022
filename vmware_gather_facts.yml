@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: Gather vmware host facts
       community.vmware.vmware_host_facts:
