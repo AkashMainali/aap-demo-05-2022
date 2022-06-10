@@ -6,7 +6,7 @@
     # username: "{{vm_username}}"
     # password: "{{vm_password}}"
     folder: "RHEL-Automation"
-    template: "RHEL-Automation/rhel7"
+    template: "rhel7"
     validate_certs: no
     name: "{{vm_name}}"
     state: poweredon
