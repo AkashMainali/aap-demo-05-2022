@@ -1,0 +1,5 @@
+plugin: community.vmware.vmware_host_inventory
+strict: False
+hostname: 192.168.2.22
+validate_certs: False
+with_tags: True
