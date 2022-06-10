@@ -10,4 +10,4 @@
 
 - name: Print activity
   debug:
-    msg: "Updated: {{ upd_result }}"
+    msg: "All the patches except for kernel have been applied to the Tareget hosts"
