@@ -12,7 +12,7 @@
     state: poweredon
     cluster: "RHEL-Automation"
     datastore: "Demo-Datastore01"
-    datacenter: "RHEL-Automation"
+    datacenter: "Plainview"
     networks:
      - name: "RHEL-Automation - vLAN 102"
        type: dynamic

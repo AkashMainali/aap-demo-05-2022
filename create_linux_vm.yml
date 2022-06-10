@@ -4,4 +4,4 @@
   tasks:
    - name: Include role to create Linux vms.dict
      include_role:
-       name: create_liniux_vm
+       name: create_linux_vm
