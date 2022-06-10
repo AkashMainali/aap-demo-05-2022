@@ -17,3 +17,7 @@
   win_service:
     name: WinRM
     start_mode: delayed
+
+- name: Display final message
+  debug:
+    msg: "Windows Services have been installed"

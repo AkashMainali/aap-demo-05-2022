@@ -3,4 +3,4 @@
   gather_facts: no
   tasks:
    - name: Ping the windows server
-     win_ping:
+     ansible.windows.win_ping:

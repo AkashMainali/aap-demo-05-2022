@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: yes
+  become_user: yes
   tasks:
    - name: ping the windows machine
      ansible.windows.win_ping:

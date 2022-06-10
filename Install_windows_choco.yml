@@ -1,6 +1,6 @@
 ---
-- name: Work with Chocolatey Packages
-  hosts: all
+- hosts: all
+  become_user: yes
   tasks:
 
    - name: Include role to install windows service

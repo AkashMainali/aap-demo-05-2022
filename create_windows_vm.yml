@@ -1,8 +1,6 @@
 ---
-- name: Deploys VM based on cloud image
-  hosts: localhost
-  gather_facts: yes
-  become: yes
+- hosts: localhost
+  gather_facts: no
   vars:
     pool_dir: "/var/lib/libvirt/images"
     vm: ansible-created-vm

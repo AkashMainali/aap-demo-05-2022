@@ -1,6 +1,7 @@
 ---
-- name: Work with Installing windows services
-  hosts: all
+- hosts: all
+  gather_facts: no
+  become_user: yes
   tasks:
 
    - name: Include role to install windows service

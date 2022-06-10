@@ -1,6 +1,7 @@
 ---
-- name: Create directory for AD user
-  hosts: all
+- hosts: all
+  gather_facts: no
+  become_user: true
   tasks:
 
    - name: Include role to create directories for AD user in windows environment
