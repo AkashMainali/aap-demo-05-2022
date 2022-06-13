@@ -8,7 +8,7 @@
         var: "{{ linux_hostname }}"
     - name: debug variables from previous template
       debug:
-        var: "{{l inux_ip_address }}"
+        var: "{{ linux_ip_address }}"
 
     # - name: Configure the DNS server
     #   include_role:
