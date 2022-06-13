@@ -2,16 +2,16 @@
 # tasks file for configure_dns
 - name: Get the last octate of the ip address
   set_fact:
-   ip_last_octate:  "{{liniux_ip_address.split('.')[3] }}"
+   ip_last_octate:  "{{linux_ip_address.split('.')[3] }}"
 
 - name: Get the last octate of the ip address
   set_fact:
-   short_hostname: "{{liniux_hostname.split('.')[0] }}"
+   short_hostname: "{{linux_hostname.split('.')[0] }}"
 
 - name: Add server entry in forward DNS zone
   lineinfile:
     dest: /var/named/iisl.lab.zone
-    line: "{{ short_hostname }}   IN   A  {{ liniux_ip_address }}"
+    line: "{{ short_hostname }}   IN   A  {{ linux_ip_address }}"
 
 - name: Add server entry in reverse DNS zone
   lineinfile:

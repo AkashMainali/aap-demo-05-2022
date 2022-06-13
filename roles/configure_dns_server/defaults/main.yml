@@ -1,4 +1,4 @@
 ---
 # defaults file for configure_dns
-liniux_ip_address: xxx.xxx.xxx.666
-liniux_hostname: asdfgasdfgg.iisl.lab
+linux_ip_address: xxx.xxx.xxx.666
+linux_hostname: asdfgasdfgg.iisl.lab
