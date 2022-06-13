@@ -1,0 +1,7 @@
+---
+# tasks file for linux_create_user
+- name: Call the playbook to create user
+  include_tasks: create_user.yml
+
+- name: Call the playbook to create user directory
+  include_tasks: create_directory.yml

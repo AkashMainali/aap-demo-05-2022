@@ -3,6 +3,10 @@
   gather_facts: no
   become: true
   tasks:
+    - name: Create the user and associated directory
+      include_role:
+        name: linux_create_user
+
     - name: Patch the linux machine
       include_role:
         name: linux_patching
