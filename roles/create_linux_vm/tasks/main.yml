@@ -38,7 +38,7 @@
 
 - name: debug ip address of vm created
   debug:
-    var: "{{ rhel_vm }}"
+    var: rhel_vm
 
 # - name: Displaying success message
 #   debug:
