@@ -1,12 +1,12 @@
 ---
 # tasks file for create_linux_vm
 - name: Select RHEL-7 template
-  set_facts:
+  set_fact:
       linux_template: "rhel7_template"
   when: vm_template == "RHEL7"
 
 - name: Select RHEL-8 template
-  set_facts:
+  set_fact:
       linux_template: "rhel8_template"
   when: vm_template == "RHEL8"
 
