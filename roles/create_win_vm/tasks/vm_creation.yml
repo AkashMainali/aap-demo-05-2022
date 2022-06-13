@@ -1,51 +1,31 @@
 ---
-- name: Provision Windows server on VSphere
-  community.vmware.vmware_guest:
-   hostname: "{{ vcenter_server }}"
-   username: "{{ vcenter_user }}"
-   password: "{{ vcenter_pass }}"
-   folder: "{{ vcenter_folder }}"
-   template: "{{ wintemplate }}"
-   validate_certs: no
-   name: "{{ item.value.server_name }}"
-   state: poweredon
-   cluster: "{{ datacenter_cluster }}"
-   datastore: "{{ vcenter_datastore }}"
-   datacenter: "{{ datacenter_name }}"
-   cdrom:
-    - controller_number: 0
-      controller_type: ide 
-      state: present
-      unit_number: 0
-      type: iso
-      iso_path: "[ISOS_and_Templates] SQL_Ent_2019.ISO"
-   customization:
-     dns_suffix:
-       - "{{domainname}}"
-       - "{{spcomdomain}}"
-       - "{{paychexdomain}}"
-     dns_servers:
-       - '{{dns1}}'
-       - '{{dns2}}'
-     password: "{{local_password}}"
-     domain: "{{domainname}}"
-     domainadmin: "{{domainuser}}"
-     domainadminpassword: "{{domainpass}}"
-     joindomain: "{{domainname}}"
-   wait_for_ip_address: yes
-   wait_for_customization: yes
-  register: win_vm
-  loop: "{{ vms.dict|dict2items }}" 
-  when: 'item.value.tnic|int == 2'
-  poll: 0
-  async: 1000
+---
+# tasks file for create_linux_vm
+- name: Provision RHEL machine
+  vmware_guest:
+    folder: "RHEL-Automation"
+    template: "rhel7"
+    validate_certs: no
+    name: "{{vm_name}}"
+    state: poweredon
+    cluster: "RHEL-Automation"
+    datastore: "Demo-Datastore01"
+    datacenter: "Plainview"
+    networks:
+     - name: "RHEL-Automation - vLAN 102"
+       type: dhcp
+       domain: "{{vm_name}}.iisl.lab"
+       dns_servers:
+         - 192.168.2.201
+    customization:
+       hostname: '"{{vm_name}}".iisl.lab'
+       dns_servers:
+         - 192.168.2.201
+       domain: "dns.iisl.lab"
+       state: started
+    wait_for_ip_address: yes
+    wait_for_customization: yes
+  register: rhel_vm
 
-- name: Wait for Above running task to finish
-  async_status:
-   jid: "{{ item.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 100
-  delay: 10
-  loop: "{{win_vm.results}}"
-  when: item.ansible_job_id  is defined
+- debug:
+    var: rhel_vm

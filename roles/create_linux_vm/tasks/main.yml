@@ -1,14 +1,25 @@
 ---
 # tasks file for create_linux_vm
+- name: Choosing the template
+  block:
+  - name: Select RHEL-7 template
+    set_facts:
+      linux_template: "rhel7_template"
+    when: vm_template == rhel7
+  - name: Select RHEL-8 template
+    set_facts:
+      linux_template: "rhel8_template"
+    when: vm_template == rhel8
+
+- debug:
+   msg: "The template value provided is: {{ linux_template }}"
+
 - name: Provision RHEL machine
   vmware_guest:
-    # hostname: "cmrv-vc01"
-    # username: "{{vm_username}}"
-    # password: "{{vm_password}}"
     folder: "RHEL-Automation"
-    template: "rhel7"
+    template: "{{ linux_template }}"
     validate_certs: no
-    name: "{{vm_name}}"
+    name: "{{ vm_name }}"
     state: poweredon
     cluster: "RHEL-Automation"
     datastore: "Demo-Datastore01"
@@ -16,11 +27,11 @@
     networks:
      - name: "RHEL-Automation - vLAN 102"
        type: dhcp
-       domain: "{{vm_name}}.iisl.lab"
+       domain: "{{ vm_name }}.iisl.lab"
        dns_servers:
          - 192.168.2.201
     customization:
-       hostname: "{{vm_name}}.iisl.lab"
+       hostname: '"{{ vm_name }}".iisl.lab'
        dns_servers:
          - 192.168.2.201
        domain: "dns.iisl.lab"
@@ -29,5 +40,6 @@
     wait_for_customization: yes
   register: rhel_vm
 
-- debug:
-    var: rhel_vm
+- name: Displaying success message
+  debug:
+    msg: "The VM Has been provisioned successfully"
