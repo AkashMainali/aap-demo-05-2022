@@ -10,6 +10,6 @@
 - name: Adding new user to sudoers file so they can run sudo commands
   ansible.builtin.lineinfile:
     path: /etc/sudoers
-    regexp: '^{{ user }}'
-    line: '{{ user }} ALL=(ALL) NOPASSWD: ALL'
+    regexp: '^{{ linux_user }}'
+    line: '{{ linux_user }} ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
