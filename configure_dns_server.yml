@@ -5,10 +5,10 @@
 
     - name: debug variables from previous template
       debug:
-        var: "{{ linux_hostname }}"
+        msg: "{{ linux_hostname }}"
     - name: debug variables from previous template
       debug:
-        var: "{{ linux_ip_address }}"
+        msg: "{{ linux_ip_address }}"
 
     # - name: Configure the DNS server
     #   include_role:
