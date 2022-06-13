@@ -35,7 +35,16 @@
     wait_for_ip_address: yes
     wait_for_customization: yes
   register: rhel_vm
+  
+- name: debug ip address of vm created
+  debug:
+    msg: "IP address is: {{rhel_vm.json.instance.ipv4}}"
 
 - name: Displaying success message
   debug:
     msg: "The VM Has been provisioned successfully"
+
+- name: Set stats for workflow template
+  set_stats:
+    data:
+      ip_address: "{{rhel_vm.json.instance.ipv4}}"
