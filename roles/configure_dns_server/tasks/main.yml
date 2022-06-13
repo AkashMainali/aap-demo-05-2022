@@ -1,5 +1,11 @@
 ---
 # tasks file for configure_dns
+
+- debug:
+    msg: "short_hostname: {{liniux_hostname | split(.) | first }}"
+- debug:
+    msg: "ip_last_octate: {{liniux_ip_address | split(.) | last }}"
+
 - name: Get the last octate of the ip address
   set_fact:
    ip_last_octate: "{{liniux_ip_address | split(.) | last }}"
@@ -7,11 +13,6 @@
 - name: Get the last octate of the ip address
   set_fact:
    short_hostname: "{{liniux_hostname | split(.) | first }}"
-
-- debug:
-    msg: "short_hostname: {{liniux_hostname | split(.) | first }}"
-- debug:
-    msg: "ip_last_octate: {{liniux_ip_address | split(.) | last }}"
 
 - name: Add server entry in forward DNS zone
   lineinfile:
