@@ -11,7 +11,7 @@
 - name: Add server entry in forward DNS zone
   lineinfile:
     dest: /var/named/iisl.lab.zone
-    line: "{{ short_hostname }}   IN   A  {{ linux_ip_address }}"
+    line: "{{ short_hostname }}   IN   A  {{ liniux_ip_address }}"
 
 - name: Add server entry in reverse DNS zone
   lineinfile:
