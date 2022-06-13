@@ -2,13 +2,13 @@
 - hosts: all
   gather_facts: no
   tasks:
-    # - name: Create the user and associated directory
-    #   include_role:
-    #     name: linux_create_user
-
-    - name: Configure /etc/resolve.conf
+    - name: Create the user and associated directory
       include_role:
-        name: configure_resolve_conf
+        name: linux_create_user
+
+    # - name: Configure /etc/resolve.conf
+    #   include_role:
+    #     name: configure_resolve_conf
 
     # - name: Register and Subscribe to RHEL
     #   include_role:

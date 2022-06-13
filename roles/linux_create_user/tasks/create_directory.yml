@@ -1,0 +1,10 @@
+---
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: '{{ linux_user }}'
+  with_items: 
+  - /home/{{linux_user}}/ansible
+  - /home/{{linux_user}}/ansible/roles
+  - /home/{{linux_user}}/ansible/collections
