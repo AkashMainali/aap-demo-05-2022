@@ -2,7 +2,8 @@
 # tasks file for create_directory_for_ad_user
 - name: Create directories for AD user
   win_file:
-    path:
+    path: "{{ item }}"
     state: directory
   with_items:
-   - "{{ dir_path }}"
+   - /home/{{linux_user}}/ansible
+   - /home/{{linux_user}}/temp_files
