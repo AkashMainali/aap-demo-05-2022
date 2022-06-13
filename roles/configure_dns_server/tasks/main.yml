@@ -18,7 +18,11 @@
     dest: /var/named/reverse.2.168.192.zone
     line: "{{ ip_last_octate }}  IN  PTR  {{ linux_hostname }}. "
 
-# - name: Restart DNS serveice
-#   ansible.builtin.service:
-#    name: named
-#    state: restarted
+- name: Restart DNS serveice
+  ansible.builtin.service:
+   name: named
+   state: restarted
+
+- name: Display success message
+  debug:
+    msg: " The created VM has been added to the DNS server "
