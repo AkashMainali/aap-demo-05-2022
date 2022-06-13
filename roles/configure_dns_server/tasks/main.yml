@@ -2,27 +2,28 @@
 # tasks file for configure_dns
 
 - debug:
-    msg: "short_hostname: {{liniux_hostname | split(.) | first }}"
+    var: "{{liniux_hostname.split('.')[0] }}"
+
 - debug:
-    msg: "ip_last_octate: {{liniux_ip_address | split(.) | last }}"
+    msg: "{{liniux_ip_address.split('.')[3] }}"
 
-# - name: Get the last octate of the ip address
-#   set_fact:
-#    ip_last_octate: "{{liniux_ip_address | split(.) | last }}"
+- name: Get the last octate of the ip address
+  set_fact:
+   ip_last_octate: "{{liniux_ip_address | split(.) | last }}"
 
-# - name: Get the last octate of the ip address
-#   set_fact:
-#    short_hostname: "{{liniux_hostname | split(.) | first }}"
+- name: Get the last octate of the ip address
+  set_fact:
+   short_hostname: "{{liniux_hostname | split(.) | first }}"
 
-# - name: Add server entry in forward DNS zone
-#   lineinfile:
-#     dest: /var/named/iisl.lab.zone
-#     line: "{{ short_hostname }}   IN   A  {{ linux_ip_address }}"
+- name: Add server entry in forward DNS zone
+  lineinfile:
+    dest: /var/named/iisl.lab.zone
+    line: "{{ short_hostname }}   IN   A  {{ linux_ip_address }}"
 
-# - name: Add server entry in reverse DNS zone
-#   lineinfile:
-#     dest: /var/named/reverse.2.168.192.zone
-#     line: "{{ ip_last_octate }}  IN  PTR  {{ linux_hostname }}. "
+- name: Add server entry in reverse DNS zone
+  lineinfile:
+    dest: /var/named/reverse.2.168.192.zone
+    line: "{{ ip_last_octate }}  IN  PTR  {{ linux_hostname }}. "
 
 # - name: Restart DNS serveice
 #   ansible.builtin.service:
