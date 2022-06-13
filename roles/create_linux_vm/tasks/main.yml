@@ -5,11 +5,11 @@
   - name: Select RHEL-7 template
     set_facts:
       linux_template: "rhel7_template"
-    when: vm_template == rhel7
+    when: vm_template == "RHEL7"
   - name: Select RHEL-8 template
     set_facts:
       linux_template: "rhel8_template"
-    when: vm_template == rhel8
+    when: vm_template == "RHEL8"
 
 - debug:
    msg: "The template value provided is: {{ linux_template }}"
