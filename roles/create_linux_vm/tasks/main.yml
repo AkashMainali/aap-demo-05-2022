@@ -10,34 +10,31 @@
       linux_template: "rhel8_template"
   when: vm_template == "RHEL8"
 
-- debug:
-   msg: "The template value provided is: {{ linux_template }}"
-
-# - name: Provision RHEL machine
-#   vmware_guest:
-#     folder: "RHEL-Automation"
-#     template: "{{ linux_template }}"
-#     validate_certs: no
-#     name: "{{ vm_name }}"
-#     state: poweredon
-#     cluster: "RHEL-Automation"
-#     datastore: "Demo-Datastore01"
-#     datacenter: "Plainview"
-#     networks:
-#      - name: "RHEL-Automation - vLAN 102"
-#        type: dhcp
-#        domain: "{{ vm_name }}.iisl.lab"
-#        dns_servers:
-#          - 192.168.2.201
-#     customization:
-#        hostname: '"{{ vm_name }}".iisl.lab'
-#        dns_servers:
-#          - 192.168.2.201
-#        domain: "dns.iisl.lab"
-#        state: started
-#     wait_for_ip_address: yes
-#     wait_for_customization: yes
-#   register: rhel_vm
+- name: Provision RHEL machine
+  vmware_guest:
+    folder: "RHEL-Automation"
+    template: "{{ linux_template }}"
+    validate_certs: no
+    name: "{{ vm_name }}"
+    state: poweredon
+    cluster: "RHEL-Automation"
+    datastore: "Demo-Datastore01"
+    datacenter: "Plainview"
+    networks:
+     - name: "RHEL-Automation - vLAN 102"
+       type: dhcp
+       domain: "{{ vm_name }}.iisl.lab"
+       dns_servers:
+         - 192.168.2.201
+    customization:
+       hostname: '"{{ vm_name }}".iisl.lab'
+       dns_servers:
+         - 192.168.2.201
+       domain: "dns.iisl.lab"
+       state: started
+    wait_for_ip_address: yes
+    wait_for_customization: yes
+  register: rhel_vm
 
 - name: Displaying success message
   debug:
