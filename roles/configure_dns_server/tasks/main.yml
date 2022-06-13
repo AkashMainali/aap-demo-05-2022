@@ -1,16 +1,27 @@
 ---
 # tasks file for configure_dns
+- name: Get the last octate of the ip address
+  set_fact:
+   ip_last_octate: "{{liniux_ip_address | split(.) | last }}"
+
+- name: Get the last octate of the ip address
+  set_fact:
+   short_hostname: "{{liniux_hostname | split(.) | first }}"
+
+- debug:
+    msg: "short_hostname: {{liniux_hostname | split(.) | first }}"
+- debug:
+    msg: "ip_last_octate: {{liniux_ip_address | split(.) | last }}"
+
 - name: Add server entry in forward DNS zone
   lineinfile:
     dest: /var/named/iisl.lab.zone
-    # Example -- work on geting short_hostname remaining
-    line: <short_hostname>   IN   A  <ipaddress>
+    line: "{{ short_hostname }}   IN   A  {{ linux_ip_address }}"
 
 - name: Add server entry in reverse DNS zone
   lineinfile:
     dest: /var/named/reverse.2.168.192.zone
-    # Example -- work on getting last octate of the ip address remaining
-    line: 214  IN  PTR  <hostname>. 
+    line: "{{ ip_last_octate }}  IN  PTR  {{ linux_hostname }}. "
 
 - name: Restart DNS serveice
   ansible.builtin.service:
