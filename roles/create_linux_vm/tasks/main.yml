@@ -47,4 +47,5 @@
 - name: Set stats for workflow template
   set_stats:
     data:
-      ip_address: "{{ linux_vm_ip }}"
+      linux_ip_address: "{{ linux_vm_ip }}"
+      linux_hostname: "{{ vm_name }}.iisl.lab"
