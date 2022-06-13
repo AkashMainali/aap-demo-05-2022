@@ -47,4 +47,4 @@
 - name: Set stats for workflow template
   set_stats:
     data:
-      ip_address: "linux_vm_ip"
+      ip_address: "{{ linux_vm_ip }}"
