@@ -28,10 +28,6 @@
          - 192.168.2.201
     customization:
        hostname: '"{{ vm_name }}".iisl.lab'
-       dns_servers:
-         - 192.168.2.201
-       domain: "dns.iisl.lab"
-       state: started
     wait_for_ip_address: yes
     wait_for_customization: yes
   register: rhel_vm
