@@ -3,7 +3,7 @@
   gather_facts: no
   become_user: true
   tasks:
-
+  
    - name: Include role to create directories for AD user in windows environment
      include_role:
         name: create_directory_for_ad_user
