@@ -1,0 +1,6 @@
+---
+# tasks file for configure_resolve_conf
+- name: Replace the resolve.conf file in /etc/resolve.conf
+  ansible.builtin.copy:
+    src: resolve.conf
+    dest: /etc/resolve.conf

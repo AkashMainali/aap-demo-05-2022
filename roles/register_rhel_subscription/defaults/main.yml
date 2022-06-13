@@ -1,0 +1,3 @@
+---
+# defaults file for register_rhel_subscription
+org_activationkey: "my-datacenter-sub"

@@ -1,0 +1,10 @@
+---
+# tasks file for register_rhel_subscription
+- name: Add Redhat subscription to a specific pool by ID.
+  community.general.redhat_subscription:
+    state: present
+    force_register: yes
+    username: '{{ red_sub_user }}'
+    password: '{{ red_sub_pass }}'
+    auto_attach: true
+

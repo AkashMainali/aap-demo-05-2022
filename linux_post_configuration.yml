@@ -7,6 +7,14 @@
       include_role:
         name: linux_create_user
 
+    - name: Configure /etc/resolve.conf
+      include_role:
+        name: configure_resolve_conf
+
+    - name: Register and Subscribe to RHEL
+      include_role:
+        name: register_rhel_subscription
+
     - name: Patch the linux machine
       include_role:
         name: linux_patching
