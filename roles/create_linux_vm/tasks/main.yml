@@ -40,9 +40,9 @@
   set_fact:
     linux_vm_ip: rhel_vm.instance.hw_eth0.ipaddresses[0]
 
-# - name: Displaying success message
-#   debug:
-#     msg: "The VM Has been provisioned successfully"
+- name: Displaying success message
+  debug:
+    msg: "The VM Has been provisioned successfully"
 
 - name: Set stats for workflow template
   set_stats:
