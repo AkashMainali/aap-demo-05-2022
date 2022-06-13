@@ -1,0 +1,18 @@
+---
+# tasks file for configure_dns
+- name: Add server entry in forward DNS zone
+  lineinfile:
+    dest: /var/named/iisl.lab.zone
+    # Example -- work on geting short_hostname remaining
+    line: <short_hostname>   IN   A  <ipaddress>
+
+- name: Add server entry in reverse DNS zone
+  lineinfile:
+    dest: /var/named/reverse.2.168.192.zone
+    # Example -- work on getting last octate of the ip address remaining
+    line: 214  IN  PTR  <hostname>. 
+
+- name: Restart DNS serveice
+  ansible.builtin.service:
+   name: named
+   state: restarted

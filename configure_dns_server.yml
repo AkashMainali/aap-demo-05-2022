@@ -1,0 +1,8 @@
+---
+- hosts: all
+  gather_facts: no
+  become: true
+  tasks:
+    - name: Configure the DNS server
+      include_role:
+        name: configure_dns_server
