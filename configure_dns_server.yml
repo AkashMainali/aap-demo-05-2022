@@ -2,6 +2,12 @@
 - hosts: all
   gather_facts: no
   tasks:
-    - name: Configure the DNS server
-      include_role:
-        name: configure_dns_server
+    - name: debug variables from previous template
+      debug:
+        vars: "{{ item }}"
+      loop:
+      - "{{linux_hostname}}"
+      - "{{linux_ip_address}}"
+    # - name: Configure the DNS server
+    #   include_role:
+    #     name: configure_dns_server
