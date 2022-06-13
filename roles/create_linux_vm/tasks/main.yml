@@ -24,6 +24,7 @@
      - name: "RHEL-Automation - vLAN 102"
        type: dhcp
        domain: "{{ vm_name }}.iisl.lab"
+       connected: yes
        dns_servers:
          - 192.168.2.201
     customization:
