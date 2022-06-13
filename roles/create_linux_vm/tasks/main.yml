@@ -37,14 +37,14 @@
   register: rhel_vm
 
 - name: debug ip address of vm created
-  debug:
-    var: rhel_vm.instance.hw_eth0.ipaddresses[0]
+  set_fact:
+    linux_vm_ip: rhel_vm.instance.hw_eth0.ipaddresses[0]
 
 # - name: Displaying success message
 #   debug:
 #     msg: "The VM Has been provisioned successfully"
 
-# - name: Set stats for workflow template
-#   set_stats:
-#     data:
-#       ip_address: "{{rhel_vm.json.instance.ipv4}}"
+- name: Set stats for workflow template
+  set_stats:
+    data:
+      ip_address: "linux_vm_ip"
