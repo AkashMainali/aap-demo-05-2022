@@ -38,7 +38,7 @@
 
 - name: debug ip address of vm created
   debug:
-    var: rhel_vm.instance.hw_eth0.ipaddresses
+    var: rhel_vm.instance.hw_eth0.ipaddresses[0]
 
 # - name: Displaying success message
 #   debug:
