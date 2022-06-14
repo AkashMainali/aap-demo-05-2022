@@ -8,7 +8,6 @@
       ansible_host: "{{ linux_ip_address }}"
       groups: rhel_server
   
----
 - hosts: rhel_server
   gather_facts: no
   tasks:
