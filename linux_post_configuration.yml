@@ -11,9 +11,11 @@
 - hosts: rhel_server
   gather_facts: no
   tasks:
-    - name: 
+    - name: Get the hostname
       debug:
         var: "{{ inventory_hostname }}" 
+    - name: Ping the server
+      ping:
     # - name: Create the user and associated directory
     #   include_role:
     #     name: linux_create_user
