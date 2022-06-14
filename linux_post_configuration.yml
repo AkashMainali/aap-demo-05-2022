@@ -1,7 +1,15 @@
 ---
 - hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: Create in memory inventory with created VM
+    add_host:
+      name: "{{ linux_hostname }}"
+      ansible_host: "{{ linux_ip_address }}"
+      groups: rhel_server
+  
 ---
-- hosts: all
+- hosts: rhel_server
   gather_facts: no
   tasks:
     - name: Create the user and associated directory
