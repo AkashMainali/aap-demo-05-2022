@@ -11,18 +11,21 @@
 - hosts: rhel_server
   gather_facts: no
   tasks:
-    - name: Create the user and associated directory
-      include_role:
-        name: linux_create_user
+    - name: 
+      debug:
+        var: "{{ inventory_hostname }}" 
+    # - name: Create the user and associated directory
+    #   include_role:
+    #     name: linux_create_user
 
-    - name: Configure /etc/resolve.conf
-      include_role:
-        name: configure_resolve_conf
+    # - name: Configure /etc/resolve.conf
+    #   include_role:
+    #     name: configure_resolve_conf
 
-    - name: Register and Subscribe to RHEL
-      include_role:
-        name: register_rhel_subscription
+    # - name: Register and Subscribe to RHEL
+    #   include_role:
+    #     name: register_rhel_subscription
 
-    - name: Patch the linux machine
-      include_role:
-        name: linux_patching
+    # - name: Patch the linux machine
+    #   include_role:
+    #     name: linux_patching
