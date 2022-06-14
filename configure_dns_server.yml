@@ -11,6 +11,6 @@
       debug:
         msg: "{{ linux_ip_address }}"
 
-    - name: Configure the DNS server
-      include_role:
-        name: configure_dns_server
+    # - name: Configure the DNS server
+    #   include_role:
+    #     name: configure_dns_server
