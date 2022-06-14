@@ -6,6 +6,7 @@
     - name: debug variables from previous template
       debug:
         msg: "{{ linux_hostname }}"
+        
     - name: debug variables from previous template
       debug:
         msg: "{{ linux_ip_address }}"

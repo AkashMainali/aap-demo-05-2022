@@ -5,22 +5,3 @@
    - name: Include role to create Linux vms.dict
      include_role:
        name: create_linux_vm
-      #  register: vm_out
-       
-#    - name: set fact for hostname
-#      set_facts:
-#       hostname: "{{vm_out.json.ipv4.hostname}}"
-
-#    - name:
-#      add_host:
-#        name:  "{{hostname}}"
-#        groups:
-#        - linux_group
-
-# ---
-# - host: linux_group
-#   tasks:
-#     - name: Install httpd
-#       yum:
-#         name: httpd
-#         state: latest
